@@ -56,18 +56,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendUser(String fullName, String password) {
-        mAPIService.sendUser(fullName, password).enqueue(new Callback<User>() {
+        User user=new User();
+        user.setFullName(fullName);
+        user.setPassword(password);
+        mAPIService.sendUser(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
 
-                if(response.isSuccessful()) {
-                    showResponse(response.body().toString());
-                }
+                showResponse(response.body().toString());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                String kaj=call.toString();
+                showResponse(t.getMessage());
             }
         });
     }

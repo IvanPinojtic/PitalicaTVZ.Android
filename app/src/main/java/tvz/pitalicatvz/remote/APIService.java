@@ -1,8 +1,10 @@
 package tvz.pitalicatvz.remote;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import tvz.pitalicatvz.User;
 
@@ -13,9 +15,10 @@ import tvz.pitalicatvz.User;
 public interface APIService {
 
     @POST("/api/Users/TryGetUser")
-    @FormUrlEncoded
-    Call<User> sendUser(@Field("fullName") String fullName,
-                        @Field("password") String password);
+    Call<User> sendUser(@Body User user);
+
+    @GET("/api/Users")
+    Call<User> getUsers();
 
     @POST("/posts")
     @FormUrlEncoded

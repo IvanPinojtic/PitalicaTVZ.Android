@@ -11,6 +11,12 @@ public class User {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("examsCreated")
+    @Expose
+    private Object examsCreated;
+    @SerializedName("examsTaken")
+    @Expose
+    private Object examsTaken;
 
     @Override
     public String toString() {
@@ -46,6 +52,22 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Object getExamsCreated() {
+        return examsCreated;
+    }
+
+    public void setExamsCreated(Object examsCreated) {
+        this.examsCreated = examsCreated;
+    }
+
+    public Object getExamsTaken() {
+        return examsTaken;
+    }
+
+    public void setExamsTaken(Object examsTaken) {
+        this.examsTaken = examsTaken;
     }
 
 }
