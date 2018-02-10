@@ -18,7 +18,7 @@ public class User {
     private String password;
     @SerializedName("examsCreated")
     @Expose
-    private List<UserExamCreated> examsCreated;
+    private List<Exam> examsCreated;
     @SerializedName("examsTaken")
     @Expose
     private List<UserExamTaken> examsTaken;
@@ -45,11 +45,11 @@ public class User {
         this.password = password;
     }
 
-    public List<UserExamCreated> getExamsCreated() {
+    public List<Exam> getExamsCreated() {
         return examsCreated;
     }
 
-    public void setExamsCreated(List<UserExamCreated> examsCreated) {
+    public void setExamsCreated(List<Exam> examsCreated) {
         this.examsCreated = examsCreated;
     }
 
