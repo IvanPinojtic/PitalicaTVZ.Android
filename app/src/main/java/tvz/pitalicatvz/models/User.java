@@ -1,10 +1,15 @@
-package tvz.pitalicatvz;
+package tvz.pitalicatvz.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class User {
 
+    @SerializedName("id")
+    @Expose
+    private int id;
     @SerializedName("fullName")
     @Expose
     private String fullName;
@@ -13,22 +18,16 @@ public class User {
     private String password;
     @SerializedName("examsCreated")
     @Expose
-    private Object examsCreated;
+    private List<UserExamCreated> examsCreated;
     @SerializedName("examsTaken")
     @Expose
-    private Object examsTaken;
+    private List<UserExamTaken> examsTaken;
 
-    @Override
-    public String toString() {
-        return "{" +
-                "fullName='" + fullName + '\'' +
-                ", password='" + password +
-                '}';
+    public int getId() {return id;}
+
+    public void setId(int id) {
+        this.id = id;
     }
-
-    @SerializedName("id")
-    @Expose
-    private Integer id;
 
     public String getFullName() {
         return fullName;
@@ -46,28 +45,27 @@ public class User {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Object getExamsCreated() {
+    public List<UserExamCreated> getExamsCreated() {
         return examsCreated;
     }
 
-    public void setExamsCreated(Object examsCreated) {
+    public void setExamsCreated(List<UserExamCreated> examsCreated) {
         this.examsCreated = examsCreated;
     }
 
-    public Object getExamsTaken() {
+    public List<UserExamTaken> getExamsTaken() {
         return examsTaken;
     }
 
-    public void setExamsTaken(Object examsTaken) {
+    public void setExamsTaken(List<UserExamTaken> examsTaken) {
         this.examsTaken = examsTaken;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "fullName='" + fullName + '\'' +
+                ", password='" + password +
+                '}';
+    }
 }

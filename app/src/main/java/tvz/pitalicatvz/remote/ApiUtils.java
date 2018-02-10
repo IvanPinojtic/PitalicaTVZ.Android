@@ -8,8 +8,8 @@ public class ApiUtils {
 
     private ApiUtils() {}
 
-    public static final String BASE_URL = "http://192.168.5.189/";
-    //public static final String BASE_URL = "http://jsonplaceholder.typicode.com/";
+    //public static final String BASE_URL = "http://94.253.242.123:80/";//global
+    public static final String BASE_URL = "http://192.168.5.189/";//local
 
     public static APIService getAPIService() {
 

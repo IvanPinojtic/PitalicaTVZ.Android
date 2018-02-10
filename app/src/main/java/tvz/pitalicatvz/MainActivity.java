@@ -11,6 +11,7 @@ import android.widget.TextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import tvz.pitalicatvz.models.User;
 import tvz.pitalicatvz.remote.APIService;
 import tvz.pitalicatvz.remote.ApiUtils;
 import tvz.pitalicatvz.remote.Post;
@@ -38,52 +39,30 @@ public class MainActivity extends AppCompatActivity {
                 String fullName = titleEt.getText().toString().trim();
                 String password = bodyEt.getText().toString().trim();
                 if (!TextUtils.isEmpty(fullName) && !TextUtils.isEmpty(password)) {
-                    sendUser(fullName, password);
+                    tryGetUser(fullName, password);
                 }
             }
         });
-
-        /*submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String title = titleEt.getText().toString().trim();
-                String body = bodyEt.getText().toString().trim();
-                if(!TextUtils.isEmpty(title) && !TextUtils.isEmpty(body)) {
-                    sendPost(title, body);
-                }
-            }
-        });*/
     }
 
-    public void sendUser(String fullName, String password) {
+    public void tryGetUser(String fullName, String password) {
         User user=new User();
         user.setFullName(fullName);
         user.setPassword(password);
-        mAPIService.sendUser(user).enqueue(new Callback<User>() {
+        mAPIService.tryGetUser(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
-                showResponse(response.body().toString());
+                if(response.body()==null){
+                    if(response.raw().code()==404)
+                        showResponse("UserNotFound");
+                }
+                else
+                    showResponse(response.body().toString());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 showResponse(t.getMessage());
-            }
-        });
-    }
-    public void sendPost(String title, String body) {
-        mAPIService.savePost(title, body, 1).enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-
-                if(response.isSuccessful()) {
-                    showResponse(response.body().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
             }
         });
     }
